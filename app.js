@@ -1,23 +1,19 @@
-console.log("Javascript is alive!");
+var greeting = document.getElementById('greeting');
 
-document.getElementById('greeting').innerText = "Hello World";
+greeting.innerText = "Hello World";
+greeting.innerHTML = '<img src="http://49.media.tumblr.com/tumblr_m6qt1rjPSz1rxjzkho1_500.gif">';
 
-var listClicked = null;
-var selected = null;
+var essentialsList = document.getElementById('essentials');
 
-var listItems = [];
-listItems = document.getElementsByTagName('li');
+essentialsList.addEventListener('click', function(event) {
+    var currentTarget = document.querySelector('.selected');
+    currentTarget.classList.remove('selected');
 
-for (var i = 0; i < listItems.length; i++) {
-  var list = listItems[i]
-  list.style.backgroundColor = 'yellow';
-}
+    if (!(event.target.classList.contains('selected'))) {
+      event.target.classList.add('selected');
+      greeting.innerHTML = '<img src="images/' + event.target.innerText + '.jpeg">';
+    }
 
 
-document.getElementById('greeting').innerHTML = '<img src="http://49.media.tumblr.com/tumblr_m6qt1rjPSz1rxjzkho1_500.gif">';
 
-var unorderedList = document.getElementById('essentials');
-
-unorderedList.addEventListener('click',function(event){
-  this.classList.add('selected');
-})
+});
